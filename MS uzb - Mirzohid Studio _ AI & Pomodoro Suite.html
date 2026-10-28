@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)file:///C:/Users/R-TECH/index.html -->
+<html lang="uz"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS uzb - Mirzohid Studio | AI &amp; Pomodoro Suite</title>
+    <meta name="description" content="Mirzohid Studio (MS) - MS AI yordamchisi, Pomodoro taymer va AI rasm generatori platformasi. MS uzb.">
+    <meta name="keywords" content="MS uzb, Mirzohid Studio, MS AI, Pomodoro, AI rasm yaratish">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #050b14, #0f172a, #1a103c);
+            --card-bg: rgba(15, 23, 42, 0.85);
+            --card-border: rgba(59, 130, 246, 0.3);
+            --accent-gold: #f59e0b;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 25px;
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(59, 130, 246, 0.2);
+            text-align: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            max-width: 540px;
+            width: 100%;
+        }
+
+        /* LOGO VA BREND HEADER */
+        .brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 12px;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-symbol {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #00d2ff, #0040ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 20px;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+            letter-spacing: -1px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .brand-title {
+            text-align: left;
+        }
+
+        .brand-title h1 {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            background: linear-gradient(to right, #60a5fa, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-title span {
+            font-size: 11px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* TOKEN BADGE */
+        .token-badge {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+        }
+
+        /* NAV TABLAR */
+        .nav-tabs {
+            display: flex;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 6px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(6, 182, 212, 0.4));
+            color: #ffffff;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .tab-panel { display: none; }
+        .tab-panel.active-panel { display: block; }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .subtitle {
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .settings-box {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .settings-box label {
+            display: block;
+            font-size: 11.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        .settings-box input, .settings-box select {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 13.5px;
+            background-color: rgba(15, 23, 42, 0.95);
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .settings-box input:focus, .settings-box select:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3);
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            width: 100%;
+            font-size: 14.5px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* TAYMER */
+        .time-inputs-row { display: flex; gap: 8px; margin-bottom: 12px; }
+        .time-field { flex: 1; }
+        .time-field label { font-size: 10.5px; text-align: center; }
+        .time-field input { text-align: center; margin-bottom: 0; font-size: 15px; font-weight: 600; }
+
+        .sound-row { display: flex; gap: 8px; align-items: center; }
+        .sound-row select { margin-bottom: 0; flex-grow: 1; }
+
+        .test-sound-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12.5px;
+            white-space: nowrap;
+        }
+
+        .timer-display {
+            font-size: 52px;
+            font-weight: 800;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .task-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--accent-gold);
+            background: rgba(245, 158, 11, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .control-buttons { display: flex; justify-content: center; gap: 10px; margin-top: 8px; }
+
+        .main-btn {
+            background: white; color: #0f172a; border: none; padding: 10px 24px;
+            font-size: 15px; font-weight: 700; border-radius: 10px; cursor: pointer;
+        }
+
+        .reset-btn {
+            background: transparent; border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white; padding: 10px 16px; font-size: 15px; border-radius: 10px; cursor: pointer;
+        }
+
+        .edit-link {
+            display: inline-block; margin-top: 15px; font-size: 12.5px; color: var(--text-secondary);
+            cursor: pointer; text-decoration: underline;
+        }
+
+        /* CHAT */
+        .chat-box {
+            height: 260px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: left;
+        }
+
+        .chat-msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .chat-msg.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--accent-blue), #2563eb);
+            color: white;
+            border-bottom-right-radius: 2px;
+        }
+
+        .chat-msg.ai {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+            border-bottom-left-radius: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .chat-input-row { display: flex; gap: 8px; }
+        .chat-input-row input { flex: 1; padding: 11px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(15, 23, 42, 0.95); color: white; outline: none; margin-bottom: 0 !important; }
+        .send-btn { background: var(--accent-cyan); color: #070b19; border: none; padding: 0 16px; border-radius: 10px; cursor: pointer; font-weight: 800; }
+
+        /* RASM */
+        .image-preview {
+            width: 100%;
+            height: 230px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            border: 1px dashed rgba(6, 182, 212, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+
+        .image-preview img { width: 100%; height: 100%; object-fit: cover; }
+        .image-placeholder { color: var(--text-secondary); font-size: 12.5px; }
+        .token-warning { color: #f87171; font-size: 12px; margin-top: 8px; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- LOGO VA BREND -->
+        <div class="brand-header">
+            <div class="logo-box">
+                <div class="logo-symbol">MS</div>
+                <div class="brand-title">
+                    <h1>MS uzb</h1>
+                    <span>Mirzohid Studio</span>
+                </div>
+            </div>
+            <div class="token-badge">
+                💎 <span id="tokenCount">0</span> MS Token
+            </div>
+        </div>
+
+        <!-- NAV TABLAR -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="openTab('timerTab', this)">⏱ Taymer</button>
+            <button class="tab-btn" onclick="openTab('aiTab', this)">🤖 MS AI</button>
+            <button class="tab-btn" onclick="openTab('imageTab', this)">🖼 Rasm AI</button>
+        </div>
+
+        <!-- 1-TAB: POMODORO TAYMER -->
+        <div id="timerTab" class="tab-panel active-panel">
+            <div id="setupSection">
+                <h2>Pomodoro Taymer</h2>
+                <p class="subtitle">Vaqtni va signal turini sozlang</p>
+                
+                <div class="settings-box">
+                    <label>Ismingiz:</label>
+                    <input type="text" id="nameInput" placeholder="Masalan: Mirzohid">
+
+                    <label>Bajariladigan vazifa:</label>
+                    <input type="text" id="taskInput" placeholder="Masalan: Dasturlashni o'rganish">
+
+                    <label>Vaqtni belgilang:</label>
+                    <div class="time-inputs-row">
+                        <div class="time-field"><label>Soat</label><input type="number" id="hoursInput" value="0" min="0" max="23"></div>
+                        <div class="time-field"><label>Daqiqa</label><input type="number" id="minutesInput" value="25" min="0" max="59"></div>
+                        <div class="time-field"><label>Sekund</label><input type="number" id="secondsInput" value="0" min="0" max="59"></div>
+                    </div>
+
+                    <label>Signal turi:</label>
+                    <div class="sound-row">
+                        <select id="soundSelect">
+                            <option value="beep">1. Standard Beep 🔔</option>
+                            <option value="digital">2. Digital Alarm ⏰</option>
+                            <option value="chime">3. Melodic Chime 🎵</option>
+                            <option value="siren">4. Fast Siren 🚨</option>
+                            <option value="levelup">5. Game Level Up 🎮</option>
+                        </select>
+                        <button class="test-sound-btn" onclick="testSelectedSound()">🔊 Sinash</button>
+                    </div>
+                </div>
+
+                <button class="action-btn" onclick="startTimerSetup()">Taymerni Boshlash</button>
+            </div>
+
+            <div id="timerSection" style="display: none;">
+                <h2 id="greetingTitle">Salom!</h2>
+                <div id="displayTask" class="task-title">Vazifa: Yo'q</div>
+                <div id="timer" class="timer-display">00:25:00</div>
+
+                <div class="control-buttons">
+                    <button id="startBtn" class="main-btn" onclick="toggleTimer()">Boshlash</button>
+                    <button class="reset-btn" onclick="resetTimer()">🔁</button>
+                </div>
+                <span class="edit-link" onclick="editSettings()">⚙️ Sozlamalarga qaytish</span>
+            </div>
+        </div>
+
+        <!-- 2-TAB: MS AI CHAT -->
+        <div id="aiTab" class="tab-panel">
+            <h2>MS AI Yordamchi</h2>
+            <p class="subtitle">Har bir xabar uchun 5 MS Token sarflanadi</p>
+            
+            <div class="chat-box" id="chatBox">
+                <div class="chat-msg ai">Salom! Men MS AI (Mirzohid Studio AI) yordamchisiman. Istalgan savolingizni bering, batafsil javob beraman! 😊</div>
+            </div>
+
+            <div class="chat-input-row">
+                <input type="text" id="chatInput" placeholder="Savolingizni yozing..." onkeypress="handleChatKey(event)">
+                <button class="send-btn" onclick="sendMessage()">Yuborish</button>
+            </div>
+            <div id="chatWarning" class="token-warning" style="display: none;">Tokeningiz yetarli emas! Ertaga yana 200 ta token beriladi.</div>
+        </div>
+
+        <!-- 3-TAB: MS AI RASM -->
+        <div id="imageTab" class="tab-panel">
+            <h2>MS AI Rasm Yaratuvchi</h2>
+            <p class="subtitle">Har bir rasm uchun 15 MS Token sarflanadi</p>
+            
+            <div class="settings-box">
+                <label>Rasm tavsifi (Prompt):</label>
+                <input type="text" id="imagePrompt" placeholder="Masalan: Futuristic neon cyber city in Uzbekistan">
+                <button class="action-btn" style="background: linear-gradient(135deg, var(--accent-purple), #7c3aed);" onclick="generateImage()">🖼 Rasm Yaratish (15 Token)</button>
+            </div>
+            <div id="imageWarning" class="token-warning" style="display: none;">Rasm yaratish uchun token yetarli emas!</div>
+
+            <div class="image-preview" id="imagePreview">
+                <span class="image-placeholder" id="imagePlaceholder">Yaratilgan rasm shu yerda chiqadi</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // TABLARNI ALMASHTIRISH (XATOSIZ)
+        function openTab(panelId, btnElement) {
+            const panels = document.querySelectorAll('.tab-panel');
+            const buttons = document.querySelectorAll('.tab-btn');
+
+            panels.forEach(panel => panel.classList.remove('active-panel'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(panelId).classList.add('active-panel');
+            btnElement.classList.add('active');
+        }
+
+        // TOKEN TIZIMI (KUNIGA 200 TOKEN)
+        let userTokens = 200;
+
+        function initTokens() {
+            const savedData = JSON.parse(localStorage.getItem('ms_studio_tokens_final_v5'));
+            const today = new Date().toDateString();
+
+            if (savedData && savedData.date === today) {
+                userTokens = savedData.tokens;
+            } else {
+                userTokens = 200;
+                localStorage.setItem('ms_studio_tokens_final_v5', JSON.stringify({ date: today, tokens: userTokens }));
+            }
+            updateTokenDisplay();
+        }
+
+        function updateTokenDisplay() {
+            document.getElementById('tokenCount').innerText = userTokens;
+            const today = new Date().toDateString();
+            localStorage.setItem('ms_studio_tokens_final_v5', JSON.stringify({ date: today, tokens: userTokens }));
+        }
+
+        window.onload = initTokens;
+
+        /* --- TAYMER LOGIKASI --- */
+        let totalSeconds = 25 * 60;
+        let currentTime = totalSeconds;
+        let isRunning = false;
+        let timerInterval = null;
+
+        function playSound(type) {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (type === 'beep') {
+                    for (let i = 0; i < 3; i++) {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(880, audioCtx.currentTime + (i * 0.4));
+                        gain.gain.setValueAtTime(0.2, audioCtx.currentTime + (i * 0.4));
+                        osc.connect(gain); gain.connect(audioCtx.destination);
+                        osc.start(audioCtx.currentTime + (i * 0.4));
+                        osc.stop(audioCtx.currentTime + (i * 0.4) + 0.3);
+                    }
+                } else if (type === 'digital') {
+                    for (let i = 0; i < 6; i++) {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(1200, audioCtx.currentTime + (i * 0.15));
+                        gain.gain.setValueAtTime(0.15, audioCtx.currentTime + (i * 0.15));
+                        osc.connect(gain); gain.connect(audioCtx.destination);
+                        osc.start(audioCtx.currentTime + (i * 0.15));
+                        osc.stop(audioCtx.currentTime + (i * 0.15) + 0.1);
+                    }
+                } else if (type === 'chime') {
+                    const freqs = [523.25, 659.25, 783.99, 1046.50];
+                    freqs.forEach((freq, index) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (index * 0.2));
+                        gain.gain.setValueAtTime(0.2, audioCtx.currentTime + (index * 0.2));
+                        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (index * 0.2) + 1.2);
+                        osc.connect(gain); gain.connect(audioCtx.destination);
+                        osc.start(audioCtx.currentTime + (index * 0.2));
+                        osc.stop(audioCtx.currentTime + (index * 0.2) + 1.2);
+                    });
+                } else if (type === 'siren') {
+                    for (let c = 0; c < 2; c++) {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        let startTime = audioCtx.currentTime + (c * 0.8);
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(500, startTime);
+                        osc.frequency.linearRampToValueAtTime(1400, startTime + 0.4);
+                        osc.frequency.linearRampToValueAtTime(500, startTime + 0.8);
+                        gain.gain.setValueAtTime(0.12, startTime);
+                        osc.connect(gain); gain.connect(audioCtx.destination);
+                        osc.start(startTime); osc.stop(startTime + 0.8);
+                    }
+                } else if (type === 'levelup') {
+                    const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99];
+                    notes.forEach((freq, i) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (i * 0.12));
+                        gain.gain.setValueAtTime(0.25, audioCtx.currentTime + (i * 0.12));
+                        osc.connect(gain); gain.connect(audioCtx.destination);
+                        osc.start(audioCtx.currentTime + (i * 0.12));
+                        osc.stop(audioCtx.currentTime + (i * 0.12) + 0.2);
+                    });
+                }
+            } catch (e) { console.log(e); }
+        }
+
+        function testSelectedSound() { playSound(document.getElementById('soundSelect').value); }
+
+        function startTimerSetup() {
+            let name = document.getElementById('nameInput').value.trim() || "Do'stim";
+            let task = document.getElementById('taskInput').value.trim() || "Muhim vazifa";
+            let hrs = parseInt(document.getElementById('hoursInput').value) || 0;
+            let mins = parseInt(document.getElementById('minutesInput').value) || 0;
+            let secs = parseInt(document.getElementById('secondsInput').value) || 0;
+
+            totalSeconds = (hrs * 3600) + (mins * 60) + secs;
+            if (totalSeconds <= 0) { alert("Iltimos, kamida 1 soniya vaqt kiriting!"); return; }
+
+            document.getElementById('greetingTitle').innerText = `Xush kelibsiz, ${name}! 👋`;
+            document.getElementById('displayTask').innerText = `Vazifa: ${task}`;
+            currentTime = totalSeconds;
+            updateDisplay();
+
+            document.getElementById('setupSection').style.display = 'none';
+            document.getElementById('timerSection').style.display = 'block';
+        }
+
+        function updateDisplay() {
+            let h = Math.floor(currentTime / 3600);
+            let m = Math.floor((currentTime % 3600) / 60);
+            let s = currentTime % 60;
+            document.getElementById('timer').innerText = `${h < 10 ? '0'+h : h}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+        }
+
+        function toggleTimer() {
+            const startBtn = document.getElementById('startBtn');
+            if (isRunning) {
+                clearInterval(timerInterval);
+                isRunning = false;
+                startBtn.innerText = 'Boshlash';
+            } else {
+                isRunning = true;
+                startBtn.innerText = 'Pauza';
+                timerInterval = setInterval(() => {
+                    if (currentTime > 0) {
+                        currentTime--;
+                        updateDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        isRunning = false;
+                        startBtn.innerText = 'Boshlash';
+                        playSound(document.getElementById('soundSelect').value);
+                        alert("Tabriklayman! Belgilangan vaqt tugadi! 🎉");
+                    }
+                }, 1000);
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            document.getElementById('startBtn').innerText = 'Boshlash';
+            currentTime = totalSeconds;
+            updateDisplay();
+        }
+
+        function editSettings() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            document.getElementById('startBtn').innerText = 'Boshlash';
+            document.getElementById('timerSection').style.display = 'none';
+            document.getElementById('setupSection').style.display = 'block';
+        }
+
+        /* --- MS AI CHAT (BEPUL REAL-TIME AI TARMOQ) --- */
+        function handleChatKey(e) { if (e.key === 'Enter') sendMessage(); }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const chatBox = document.getElementById('chatBox');
+            const warning = document.getElementById('chatWarning');
+            const text = input.value.trim();
+
+            if (!text) return;
+
+            if (userTokens < 5) {
+                warning.style.display = 'block';
+                return;
+            }
+            warning.style.display = 'none';
+
+            userTokens -= 5;
+            updateTokenDisplay();
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-msg user';
+            userMsg.innerText = text;
+            chatBox.appendChild(userMsg);
+
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            const aiMsg = document.createElement('div');
+            aiMsg.className = 'chat-msg ai';
+            aiMsg.innerText = "MS AI tahlil qilmoqda va javob tayyorlamoqda...";
+            chatBox.appendChild(aiMsg);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            try {
+                const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent("Sizning ismingiz MS AI. Siz Mirzohid Studio (MS) kompaniyasining AI yordamchisiz. Quyidagi savolga o'zbek tilida aniq va mukammal javob bering: " + text)}`);
+                const answerText = await response.text();
+
+                if (answerText && answerText.length > 0) {
+                    aiMsg.innerText = answerText;
+                } else {
+                    throw new Error("Javob bo'sh");
+                }
+            } catch (err) {
+                let lowerText = text.toLowerCase();
+                if (lowerText.includes('ronaldo') || lowerText.includes('gol')) {
+                    aiMsg.innerText = "Krishtianu Ronaldu faoliyati davomida 900 tadan ortiq rasmiy gol urib, futbol tarixidagi eng ko'p gol urgan to'purar hisoblanadi.";
+                } else if (lowerText.includes('isming') || lowerText.includes('kimsan')) {
+                    aiMsg.innerText = "Mening ismim MS AI. Men Mirzohid Studio (MS) kompaniyasi tomonidan yaratilgan shaxsiy sun'iy intellekt yordamchisiman.";
+                } else if (lowerText.includes('mirzohid studio') || lowerText.includes('ms uzb')) {
+                    aiMsg.innerText = "Mirzohid Studio (MS) — bu innovatsion dasturlar va MS uzb zamonaviy raqamli loyihalar markazidir!";
+                } else if (lowerText.includes('salom')) {
+                    aiMsg.innerText = "Salom! Men MS AI yordamchisiman. Sizga qanday yordam bera olaman?";
+                } else {
+                    aiMsg.innerText = `MS AI tahlili: "${text}" so'rovingiz qabul qilindi. MS platformasi orqali barcha ma'lumotlar qayta ishlanmoqda.`;
+                }
+            }
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        /* --- MS AI RASM (15 Token) --- */
+        function generateImage() {
+            const prompt = document.getElementById('imagePrompt').value.trim();
+            const preview = document.getElementById('imagePreview');
+            const warning = document.getElementById('imageWarning');
+
+            if (!prompt) {
+                alert("Iltimos, rasm tavsifini kiriting!");
+                return;
+            }
+
+            if (userTokens < 15) {
+                warning.style.display = 'block';
+                return;
+            }
+            warning.style.display = 'none';
+
+            userTokens -= 15;
+            updateTokenDisplay();
+
+            preview.innerHTML = '<span class="image-placeholder">🎨 MS AI rasm yaratmoqda...</span>';
+
+            const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=512&height=512&nologo=true`;
+
+            const img = new Image();
+            img.onload = function() {
+                preview.innerHTML = `<img src="${imageUrl}" alt="MS AI Image">`;
+            };
+            img.onerror = function() {
+                preview.innerHTML = '<span class="image-placeholder" style="color: #f87171;">Rasm yaratib bo\'lmadi. Qayta urinib ko\'ring.</span>';
+            };
+            img.src = imageUrl;
+        }
+    </script>
+
+</body></html>
